@@ -62,4 +62,14 @@ public class MainHabitAdapter extends RecyclerView.Adapter<MainHabitAdapter.Habi
     public int getItemCount() {
         return data.size();
     }
+
+    public void setData(List<HabitModel> habits){
+        if(habits == null) habits = new ArrayList<HabitModel>();
+        this.data = habits;
+        notifyDataSetChanged();
+    }
+
+    public List<HabitModel> getData(){
+        return data;
+    }
 }

@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
+        getRecyclerAdapter().setData(HabitManager.getInstance().loadHabits(MainActivity.this));
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -36,7 +38,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Mai
         });
         presenter = new MainPresenter();
         presenter.setContract(this);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.commitHabitList(MainActivity.this, getRecyclerAdapter().getData());
     }
 
     @Override

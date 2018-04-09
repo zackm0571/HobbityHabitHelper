@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by zmatthews on 4/6/18.
  */
@@ -15,17 +17,13 @@ public class MainPresenter {
 
     private static final String HABIT_NEW_TITLE = "New habit";
 
-    public void setContract(MainContract contract) {
-        this.contract = contract;
-    }
+    private MainContract contract;
 
     public interface MainContract{
         void onHabitCreated(HabitModel habit);
     }
 
-    private MainContract contract;
-
-    void presentNewHabbitDialog(Context context){
+    public void presentNewHabbitDialog(Context context){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View v = inflater.inflate(R.layout.new_habbit_dialog, null);
         new AlertDialog.Builder(context)
@@ -45,4 +43,11 @@ public class MainPresenter {
         }).setView(v).show();
     }
 
+    public void commitHabitList(Context ctx, List<HabitModel> habits){
+        HabitManager.getInstance().commitHabits(ctx, habits);
+    }
+
+    public void setContract(MainContract contract) {
+        this.contract = contract;
+    }
 }
