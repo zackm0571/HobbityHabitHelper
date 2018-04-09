@@ -8,12 +8,16 @@
         android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:inputType="textCapSentences"
+        android:hint="Habit Title"/>
 
     <EditText
         android:id="@+id/et_desc"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="20dp"/>
+        android:layout_margin="20dp"
+        android:inputType="textCapSentences"
+        android:hint="Habit Description"/>
 
 </LinearLayout>
